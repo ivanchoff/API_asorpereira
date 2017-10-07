@@ -1,0 +1,26 @@
+:app = http://127.0.0.1:3000
+
+# hello world test
+GET :app/user
+# post new user
+POST :app/user
+Content-Type: application/json
+
+{
+  "id" : "3",
+  "name" : "pepito"
+}
+
+# actualizar un objeto
+PUT :app/user/2
+Content-Type: application/json
+
+{
+  "name" : "sebastian"
+}
+
+#Delete
+DELETE :app/user/2
+
+# get only head no body
+HEAD :app
