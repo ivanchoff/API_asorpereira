@@ -49,13 +49,6 @@ function post_user(req, res, next) {
   var user = new User(data);
   console.log('user:',user);
 
-  /*
-  User.create({id:'5',name:'choff'},function(e,a){
-    if(e)
-      console.log(e);
-    console.log(':)',a);
-  });
-  */
   user.save().
     then((doc) => {
       res.send(doc);
@@ -109,7 +102,7 @@ function del_user(req, res, next) {
   );
 };
 
-router.get('/a', get_all);
+router.get('/', get_all);
 router.get('/:id', get_byId);
 router.post('/', post_user);
 router.put('/:id', put_user);
