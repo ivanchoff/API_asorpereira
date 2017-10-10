@@ -3,7 +3,7 @@ const router = new Router();
 const User = require('../models/user');
 
 function get_all(req, res, next) {
-  console.log('gethey1');
+  console.log('get_all:',req.url);
   User.find()
     .then(users => {
       console.log('Users', users);
@@ -44,10 +44,19 @@ function post_user(req, res, next) {
     //return next(new errors.InvalidContentError("Expects 'application/json'"));
     next();
   }
-  console.log('hey post');
   var data = req.body || {};
   var user = new User(data);
-  console.log('user:',user);
+  console.log('recibo un post voy a crear user:',user);
+/*  User.create(data)
+    .then(task => {
+      console.log('hp');
+      res.send(200, task);
+      next();
+    })
+    .catch(err => {
+      console.log('2hp');
+      res.send(500, err);
+    });
 
   user.save().
     then((doc) => {
@@ -55,18 +64,17 @@ function post_user(req, res, next) {
     }, (e) => {
       res.status(400).send(e);
     });
-  /*
+*/
+
   user.save(function(err) {
+    console.log('entro al save');
     if(err) {
       console.log('hey post err');
-      //console.log(err);
-      //return next(new errors.InternalError(err.message));
       next(err);
     }
-    console.log('hey post after');
     res.send(201,{data: 'OK'});
     next();
-  });*/
+  });
 };
 
 function put_user(req, res, next) {

@@ -7,7 +7,7 @@ POST :app/user
 Content-Type: application/json
 
 {
-  "id" : "3",
+  "cc" : "13",
   "name" : "pepito"
 }
 
