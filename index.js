@@ -1,9 +1,8 @@
 const config = require('./config/config'),
       restify = require('restify'),
       db = require('./models/db'),
-      Logger = require('bunyan');
-
-var User = require('./models/user');
+      Logger = require('bunyan'),
+      User = require('./models/user');
 
 // logger
 var log = new Logger({
@@ -16,27 +15,8 @@ var log = new Logger({
 //console.log(restify.plugins);
 server = restify.createServer({
   name: config.name,
-  version: config.version,
-  log: log,
-  formatters : {
-    'application/json' : function (req, res, body, cb) {
-      res.setHeader('Cache-Control', 'must-revalidate');
-
-      // Does the client *explicitly* accepts application/json?
-      var sendPlainText = (req.header('Accept').split(/, */).indexOf('application/json') === -1);
-
-      // Send as plain text
-      if (sendPlainText) {
-        res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      }
-
-      // Send as JSON
-      if (!sendPlainText) {
-        res.setHeader('Content-Type', 'application/json; charset=utf-8');
-      }
-      return cb(null, JSON.stringify(body));
-    }
-  }
+  version: config.version
+  //log: log,
 });
 
 
@@ -46,7 +26,7 @@ server.use(restify.plugins.bodyParser());
 server.use(restify.plugins.queryParser());
 
 server.use(function(req,res, next) {
-  req.log.info({method: req.method, url:req.url, body:req.body}, 'start');
+  //req.log.info({method: req.method, url:req.url, body:req.body}, 'start');
   next();
 });
 

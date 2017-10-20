@@ -2,113 +2,65 @@ const Router = require('restify-router').Router;
 const router = new Router();
 const User = require('../models/user');
 
+/* get all user */
 function get_all(req, res, next) {
-  console.log('get_all:',req.url);
   User.find()
     .then(users => {
-      console.log('Users', users);
       res.send(200, { success: true, message: 'ok', data: users });
     })
     .catch(err => {
-      console.error('hp',err);
       res.send(500, { success: false, message: 'Problem getting users' });
     });
-  /*
-  User.find(function(err, users) {
-    if(err){
-      //var e = new errors.InvalidContentError(err.errors.name.message)
-      next(err);
-      //res.send(500,{err: err});
-    }
-    console.log('hey2');
-    res.send(200,{data: users});
-    next();
-  });
-  */
 }
 
+/* find user by cc */
 function get_byId(req, res, next) {
-  const id = req.params.id;
-  User.findOne({id:id}, function(err, user) {
-    if(err){
-      //return next(new errors.InvalidContentError(err.errors.name.message));
-      next(err);
-    }
-    res.send(200,{data: user});
-  });
+  var id = req.params.id;
+  User.findOne({ cc: id })
+    .then(user => {
+      res.send(200, { success: true, message: 'ok', data: user });
+    })
+    .catch(err => {
+      res.send(500, { success: false, message: 'Problem getting user' });
+    });
 }
 
+/* post a new user to database */
 function post_user(req, res, next) {
-  if(!req.is('application/json')) {
-    console.log('hey post');
-    //return next(new errors.InvalidContentError("Expects 'application/json'"));
-    next();
-  }
   var data = req.body || {};
   var user = new User(data);
-  console.log('recibo un post voy a crear user:',user);
-/*  User.create(data)
+  User.create(data)
     .then(task => {
-      console.log('hp');
       res.send(200, task);
       next();
     })
     .catch(err => {
-      console.log('2hp');
       res.send(500, err);
     });
+}
 
-  user.save().
-    then((doc) => {
-      res.send(doc);
-    }, (e) => {
-      res.status(400).send(e);
-    });
-*/
-
-  user.save(function(err) {
-    console.log('entro al save');
-    if(err) {
-      console.log('hey post err');
-      next(err);
-    }
-    res.send(201,{data: 'OK'});
-    next();
-  });
-};
-
+/* Update user in database - find it by id  */
 function put_user(req, res, next) {
-  if(!req.is('application/json')) {
-    res.send({message: "Expects 'application/json'"});
-    next();
-  }
-
-  User.findOneAndUpdate(
-    {'id': req.params.id},
-    req.body,
-    function(err, doc) {
-      if(err) {
-        //res.send(500,{err: err});
-        next(err);
-      }
-      res.send(200,{data:'OK'});
+  User.findOneAndUpdate({ cc: req.params.id }, req.body)
+    .then(user => {
+      res.send(200, { data: 'OK' });
       next();
-    }
-  );
-};
+    })
+    .catch(() => {
+      res.send(500, err);
+    });
+}
 
+/* delete user by id */
 function del_user(req, res, next) {
-  User.remove(
-    {'id': req.params.id},
-    function(err) {
-      if(err) {
-        next(err);
-      }
-      res.send(200,{'data':'OK'});
-      next();
-    }
-  );
-};
+  User.deleteOne({ cc: req.params.id })
+    .then(() => {
+      res.send(200, { data: 'OK' });
+    })
+    .catch(() => {
+      res.send(500, err);
+    });
+}
 
 router.get('/', get_all);
 router.get('/:id', get_byId);
