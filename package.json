@@ -14,7 +14,8 @@
     "license": "GPL-3.0",
     "dependencies": {
         "bunyan": "^1.8.12",
-        "restify": "^6.2.3"
+        "restify": "^6.2.3",
+        "restify-router": "^0.4.2"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",

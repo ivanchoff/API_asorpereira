@@ -12,6 +12,10 @@ var _bunyan = require('bunyan');
 
 var _bunyan2 = _interopRequireDefault(_bunyan);
 
+var _users = require('./routes/users');
+
+var _users2 = _interopRequireDefault(_users);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var log = new _bunyan2.default({
@@ -52,6 +56,7 @@ server.on('uncaughtException', function (req, res, route, err) {
 });
 
 //server.on('after', restify.plugins.auditLogger({ log: log}));
+_users2.default.applyRoutes(server);
 
 server.listen(_config2.default.port, function () {
   console.log(server.name + ', listening at ' + server.url);

@@ -9,6 +9,12 @@ cliente servidor con modelo vista presentador separada en dos repositorios el *b
 y el *front-end* asi que este repo trata del *Back-end* el cual consiste de una
 API REST
 
+## Comandos
+
+`yarn build` Para transpilar el código con babel
+`yarn serve` Para correr el código
+
+
 ## API
 Esta api usara mongoDB como sistema de base de datos y manejará (por ahora) lo
 siguiente:
