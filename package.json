@@ -1,16 +1,28 @@
 {
-  "name": "API_asorpereira",
-  "version": "0.0.1",
-  "description": "API del sistema de informacion de Asorpereira",
-  "main": "index.js",
-  "repository": "https://github.com/librebeer/API_asorpereira.git",
-  "author": "libreBeer",
-  "license": "GPL-3.0",
-  "dependencies": {
-    "bluebird": "^3.5.1",
-    "bunyan": "^1.8.12",
-    "mongoose": "^4.12.0",
-    "restify": "^6.0.1",
-    "restify-router": "^0.4.2"
-  }
+    "name": "API_asorpereira",
+    "version": "0.0.1",
+    "description": "API del sistema de informacion de Asorpereira",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "nodemon src/index.js --exec babel-node",
+        "build": "babel lib -d dist",
+        "serve": "node dist/index.js",
+        "test": "mocha --compilers js:babel-register"
+    },
+    "repository": "https://github.com/librebeer/API_asorpereira.git",
+    "author": "libreBeer",
+    "license": "GPL-3.0",
+    "dependencies": {
+        "bunyan": "^1.8.12",
+        "restify": "^6.2.3",
+        "restify-router": "^0.4.2"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.6.1"
+    },
+    "directories": {
+        "test": "test"
+    }
+
 }
