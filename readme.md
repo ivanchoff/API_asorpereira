@@ -65,13 +65,15 @@ siguiente:
 
 #### Prerequisitos
 
-Descargar e instalar docker
+Descargar e instalar **docker**
 - [For Mac](https://download.docker.com/mac/stable/Docker.dmg)
 - [For Windows](https://download.docker.com/win/stable/InstallDocker.msi)
 - [For Linux](https://docs.docker.com/engine/getstarted/step_one/#docker-for-linux)
 
+Descargar e instalar **docker-compose**
+- [Instrucciones](https://docs.docker.com/compose/install/)
+
 Correr comandos
 ```
-docker build -t asorpereira_node .
-docker run -p=3000:3000 -v $(pwd):/code/project asorpereira_node dev
+docker-compose up
 ```
