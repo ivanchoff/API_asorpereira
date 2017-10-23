@@ -58,3 +58,20 @@ siguiente:
 - mongoDB
 - mongoose
 - JWT
+- Docker
+
+
+## Docker
+
+#### Prerequisitos
+
+Descargar e instalar docker
+- [For Mac](https://download.docker.com/mac/stable/Docker.dmg)
+- [For Windows](https://download.docker.com/win/stable/InstallDocker.msi)
+- [For Linux](https://docs.docker.com/engine/getstarted/step_one/#docker-for-linux)
+
+Correr comandos
+```
+docker build -t asorpereira_node .
+docker run -p=3000:3000 -v $(pwd):/code/project asorpereira_node dev
+```
