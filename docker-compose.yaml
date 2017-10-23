@@ -1,0 +1,11 @@
+version: '3'
+services:
+  node:
+    image: node:8.7.0-alpine
+    working_dir: /code/api
+    volumes:
+      - ".:/code/api"
+    command: yarn dev
+    ports:
+      - "3000:3000"
+

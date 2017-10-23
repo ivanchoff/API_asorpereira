@@ -56,7 +56,7 @@ server.on('uncaughtException', function (req, res, route, err) {
 });
 
 //server.on('after', restify.plugins.auditLogger({ log: log}));
-_users2.default.applyRoutes(server);
+_users2.default.applyRoutes(server, '/user');
 
 server.listen(_config2.default.port, function () {
   console.log(server.name + ', listening at ' + server.url);
