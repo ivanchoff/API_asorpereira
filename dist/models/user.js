@@ -1,10 +1,20 @@
 'use strict';
 
-var mongoose = require('mongoose');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-var userSchema = new mongoose.Schema({
+var _mongoose = require('mongoose');
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var userSchema = new _mongoose2.default.Schema({
   name: String,
   cc: String
 });
 
-module.exports = mongoose.model('User', userSchema);
+var User = _mongoose2.default.model('User', userSchema);
+
+exports.default = User;
