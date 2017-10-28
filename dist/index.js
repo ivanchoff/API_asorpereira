@@ -16,6 +16,10 @@ var _users = require('./routes/users');
 
 var _users2 = _interopRequireDefault(_users);
 
+var _db = require('./models/db');
+
+var _db2 = _interopRequireDefault(_db);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var log = new _bunyan2.default({
@@ -59,5 +63,12 @@ server.on('uncaughtException', function (req, res, route, err) {
 _users2.default.applyRoutes(server, '/user');
 
 server.listen(_config2.default.port, function () {
-  console.log(server.name + ', listening at ' + server.url);
+  _db2.default.on('error', function (err) {
+    console.error(err);
+    process.exit(1);
+  });
+
+  _db2.default.once('open', function () {
+    console.log(server.name + ', listening at ' + server.url);
+  });
 });
