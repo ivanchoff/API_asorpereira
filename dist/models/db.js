@@ -1,12 +1,23 @@
 'use strict';
 
-var mongoose = require('mongoose'),
-    config = require('../config/config');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-mongoose.Promise = global.Promise;
-mongoose.connect(config.db.uri, { useMongoClient: true });
+var _mongoose = require('mongoose');
 
-var db = mongoose.connection;
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
+var _config = require('../config/config');
+
+var _config2 = _interopRequireDefault(_config);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_mongoose2.default.Promise = global.Promise;
+_mongoose2.default.connect(_config2.default.db.uri, { useMongoClient: true });
+
+var db = _mongoose2.default.connection;
 
 db.on('connected', function () {
   console.log('connected to database');
@@ -28,4 +39,4 @@ process.on('SIGINT', function () {
   process.exit(0);
 });
 
-module.exports = db;
+exports.default = db;

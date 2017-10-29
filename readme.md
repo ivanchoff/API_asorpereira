@@ -14,6 +14,28 @@ API REST
 `yarn build` Para transpilar el código con babel
 `yarn serve` Para correr el código
 
+## Usando la api desde la línea de comandos
+
+Para este fin, se utilizara la aplicación `curl` para hacer las peticiones y `prettyjson`
+para formatear las respuestas json
+
+- Para crear un usuario:
+
+    $ curl -H "Content-Type: application/json" -X POST -d '{"cc": 123123, "name": "Pepe Grillo"}' localhost:3000/user | prettyjson
+
+- Para modificar un usuario:
+
+    $ curl -H "Content-Type: application/json" -X PUT -d '{"name": "alsuga"}' localhost:3000/user/:id | prettyjson
+
+- Para ver todos los usuarios o uno individual
+
+    $ curl localhost:3000/user/ | prettyjson
+    $ curl localhost:3000/user/:id | prettyjson
+
+- Para eliminar un usuaro
+
+    $ curl -X DELETE localhost:3000/user/:id | prettyjson
+
 
 ## API
 Esta api usara mongoDB como sistema de base de datos y manejará (por ahora) lo
