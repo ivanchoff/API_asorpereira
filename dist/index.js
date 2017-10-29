@@ -34,12 +34,19 @@ var _factura2 = _interopRequireDefault(_factura);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// Guarda los logs de la aplicacion
+
+
+// Base de datos
 var log = new _bunyan2.default({
   name: 'apibunyan',
   level: _config2.default.LOG_LEVEL || 'info',
   stream: process.stdout,
   serializers: _bunyan2.default.stdSerializers
 });
+
+// Rutas
+
 
 var server = _restify2.default.createServer({
   name: _config2.default.name,
@@ -72,8 +79,11 @@ server.on('uncaughtException', function (req, res, route, err) {
 });
 
 //server.on('after', restify.plugins.auditLogger({ log: log}));
+
+// Carga las colecciones y los paths de estas, luego se podria cambiar pares o algo mas ordenado
 var collections = [_user2.default, _ruta2.default, _factura2.default];
 var paths = ['/user', '/ruta', '/factura'];
+// Toma el servidor y aplica las rutas
 (0, _rest_generator2.default)(server, collections, paths);
 
 server.listen(_config2.default.port, function () {
