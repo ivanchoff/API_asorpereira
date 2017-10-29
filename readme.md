@@ -95,8 +95,51 @@ Descargar e instalar **docker**
 Descargar e instalar **docker-compose**
 - [Instrucciones](https://docs.docker.com/compose/install/)
 
-Commandos:
-- Correr servicios: `docker-compose up -d`
-- Listar estado de servicios: `docker-compose ps`
-- Parar servicios: `docker-compose stop {service_name}` (**{service_name}** es opcional y puede tomar el valor de **node** o **mongodb**)
-- Eliminar servicios: `docker-compose rm {service_name}` (**{service_name}** es opcional y puede tomar el valor de **node** o **mongodb**)
+#### Camino feliz
+
+Simplemente corre:
+```
+cd docker/local
+bash docker.sh up
+```
+
+A continuación se explica en detalle la configuración de docker.
+
+#### Script bash y variables de entorno
+
+Ir desde consola al folder `docker/local`:
+```
+cd docker/local
+```
+
+En `docker/local` hay un script en bash en el archivo `docker.sh` que se puede correr así:
+```
+./docker.sh parametros
+# Or
+bash docker.sh parametros  // Si tienes una shell diferente de bash como oh my zsh
+```
+
+Hay dos archivos con variables de entorno a tener en cuenta:
+- `docker/local/.env` # Variables de entorno necesarias para correr el script de bash
+- `docker/local/node/.env` # Variables de entorno del servicio de node
+
+Los archivos con variables de entorno `.env` están ignorados y se crean automáticamente al apartir de los archivos `.env.example`.
+
+#### Comandos
+
+**Notas:**
+- Parametros entre {} son opcionales.
+- Nombres de servicios disponibles: `node | mongodb`
+
+A continuación se describen cada uno de los parametros:
+
+**Uso: docker.sh [up|start|restart|stop|rm|sh|bash|logs|ps]**
+* `up {service}` --> Construir y correr servicios.
+* `start {service}` --> Iniciar servicios.
+* `restart {service}` --> Reiniciar servicios.
+* `stop {service}` --> Parar servicios.
+* `rm {service}` --> Eliminar servicios.
+* `sh service` --> Conectar a la shell del servicio "service"
+* `bash service` --> Conectar a la shell bash del servicio "service"
+* `logs {n_last_lines}` --> Mostar logs del servicio "service"
+* `help` --> Mostrar menú de optiones

@@ -4,19 +4,19 @@ services:
     image: node:8.7.0-alpine
     working_dir: /code/api
     volumes:
-      - ".:/code/api"
+      - "./../..:/code/api"
     command: sh -c 'yarn install && yarn dev'
     ports:
-      - "3000:3000"
+      - "${SERVICE_NODE_PORT}"
 
   mongodb:
     image: mongo:3.4.1
-    working_dir: /opt/mongodb
+    working_dir: /data/db
     volumes:
-      - mongodb_data:/opt/mongodb
-    command: sh -c 'mkdir -p /opt/mongodb && mongod --port 27017 --dbpath /opt/mongodb'
+      - mongodb_data:/data/db
+    command: sh -c 'mongod --port 27017 --dbpath /data/db'
     ports:
-      - "3001:27017"
+      - "${SERVICE_MONGODB_PORT}"
 
 volumes:
   mongodb_data:
