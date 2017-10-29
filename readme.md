@@ -95,7 +95,8 @@ Descargar e instalar **docker**
 Descargar e instalar **docker-compose**
 - [Instrucciones](https://docs.docker.com/compose/install/)
 
-Correr comandos
-```
-docker-compose up
-```
+Commandos:
+- Correr servicios: `docker-compose up -d`
+- Listar estado de servicios: `docker-compose ps`
+- Parar servicios: `docker-compose stop {service_name}` (**{service_name}** es opcional y puede tomar el valor de **node** o **mongodb**)
+- Eliminar servicios: `docker-compose rm {service_name}` (**{service_name}** es opcional y puede tomar el valor de **node** o **mongodb**)

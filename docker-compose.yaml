@@ -5,7 +5,7 @@ services:
     working_dir: /code/api
     volumes:
       - ".:/code/api"
-    command: yarn dev
+    command: sh -c 'yarn install && yarn dev'
     ports:
       - "3000:3000"
 
