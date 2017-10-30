@@ -8,6 +8,8 @@ services:
     command: sh -c 'yarn install && yarn dev'
     ports:
       - "${SERVICE_NODE_PORT}"
+    env_file:
+      - node/.env
 
   mongodb:
     image: mongo:3.4.1
