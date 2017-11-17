@@ -41,37 +41,19 @@ para formatear las respuestas json
 Esta api usara mongoDB como sistema de base de datos y manejará (por ahora) lo
 siguiente:
 
-1. *Usuarios*:
-   existen diferentes tipos de usuarios en la asociación, dado que la asociación
-   compra y vende material reciclable y es una entidad de servicios publicos estos
-   se clasifican en:
-   - *residenciales* : son basicamente las casas, esta info la usan para
-   saber cuantos usuarios residenciales atiende la asociación y la zona de influencia
-   - *comerciales*
-   - *industriales*
-   - *recicladores*
-   - *intermediarios*
-   - *asesores*
-   - *confidencial*
+1. *Usuarios involucrados en la factura*:
+   - recicladores con vehiculo motorizado (se les compra material)
+   - recicladores sin vehiculo motorizado (se les compra material)
+   - aforados (entidades que donan material)
+   - mayoristas comercializadores (intermediarios a los que se les vende material)
+   - mayoristas industriales (industria a la que se le vende material)
 
-   todos estos usuarios tienen información básica de contacto (nombre, direccion,
-   telefono, correo, etc)
+2. *Facturas*: de compra y venta
 
-2. *Facturas*:
-    en estos documentos se registra el material comprado, vendido o recogido
-    asi que las facturas pueden ser de:
-    - *compra*: cuando se le compra a un reciclador o a un intermediario
-    - *venta*: cuando se le vende a un intermediario o a un confidencial
-    - *recogido*: cuando la asociacion le recoge el reciclaje a las instituciones
-    (en este caso solo lo recoge no lo compra)
-    cada factura tiene la informacion del peso del material (plastico, carton etc)
-    y del usuario y dependiendo del tipo de usuario el precio de dicho material.
+3. *Precios*: de acuerdo al tipo de usuario.
 
-3. *Rutas*
-   los poligonos de las rutas que tiene la asociacion con el reciclador responsable
-   de la ruta, la frecuencia de visita etc.
 
-## [Modelo de la Base de Datos](./model.md)
+## [Modelo de la Base de Datos](./doc/model.md)
 
 
 ## Tecnologias a usar
